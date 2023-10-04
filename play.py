@@ -1,3 +1,5 @@
-import rich import print as rprint
+from rich import print as rprint
 
-print( "Rami Ismael ")
+rprint( "Rami Ismael ")
+
+rprint( "My name is Rami Ismael")

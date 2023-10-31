@@ -42,6 +42,7 @@ with gr.Blocks() as demo:
             inputs=[grName, nameState, grDesc, descState],
             outputs = [grName, nameState, grDesc, descState, output_box])
 
+  # this is just going to set the vector info parameters to the most recent user input
   name = grName.value
   desc = grDesc.value
   store = Chroma("langchain_store", embeddings)

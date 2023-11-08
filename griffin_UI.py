@@ -1,10 +1,11 @@
 import random
 import time
 import gradio as gr
+from matt_function import *
 
-app_description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-logo_filepath = 'aim23/Practice/images/logo_image.png'
-robot_filepath = 'aim23/Practice/images/robot_image.png'
+
+logo_filepath = 'Practice/images/logo_image.png'
+robot_filepath = 'Practice/images/robot_image.png'
 
 custom_css = """
 .column {
@@ -16,8 +17,8 @@ custom_css = """
 }
 """
 
-def respond(message, chat_history):
-  bot_message = random.choice(["How are you?", "I love you", "I'm very hungry"])
+def respond(message, chat_history, agent):
+  bot_message = agent.run(message)
   chat_history.append((message, bot_message))
   time.sleep(2)
   return "", chat_history
@@ -26,13 +27,18 @@ with gr.Blocks(css=custom_css) as demo:
   with gr.Row(variant='compact'):
     with gr.Column(scale=1, elem_classes='column'):
       logo = gr.Image(value=logo_filepath, type='filepath', show_label=False, show_download_button=False, container=False, width=75, height=75, elem_classes='column_el')
-      file = gr.File(file_types=['pdf'], file_count='multiple', show_label=False, elem_classes='column_el', height=75)
-      description = gr.Textbox(value=app_description, show_label=False, elem_classes='column_el', )
-      submit_button = gr.Button(value='Submit', elem_classes='column_el')
+      
+      agent = gr.State()
+      file = gr.File(file_types=['pdf'], file_count='single', show_label=False, elem_classes='column_el', height=75)
+      name = gr.Textbox(label="Name", elem_classes='column_el')
+      description = gr.Textbox(label="Description", elem_classes='column_el')
+      create_agent_btn = gr.Button(value='Submit', elem_classes='column_el')
+      create_agent_btn.click(fn=create_agent, inputs = [name, description, file, agent], outputs = agent)
+
       robot = gr.Image(value=robot_filepath, type='filepath', show_label=False, show_download_button=False, container=False, width=125, height=125, elem_classes='column_el')
     with gr.Column(scale=3, elem_classes='column'):
       chatbot = gr.Chatbot(elem_classes='column_el')
       msg = gr.Textbox(show_label=False, elem_classes='column_el')
-      msg.submit(respond, [msg, chatbot], [msg, chatbot])
+      msg.submit(respond, [msg, chatbot, agent], [msg, chatbot])
 
 demo.launch()

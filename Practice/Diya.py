@@ -13,13 +13,13 @@ examples = [
 ]
 
 
-    chatbot = gr.Interface(
-        fn=chatbot_response,
-        inputs=gr.Textbox(),
-        outputs=gr.Textbox(),
-        examples=examples,
-        title="CHATBOT",
-        css= "file={css_path}"
-    )
+chatbot = gr.Interface(
+    fn=chatbot_response,
+    inputs=gr.Textbox(),
+    outputs=gr.Textbox(),
+    examples=examples,
+    title="CHATBOT",
+    css= "file={css_path}"
+)
 
 chatbot.launch()

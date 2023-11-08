@@ -3,8 +3,8 @@ import time
 import gradio as gr
 
 app_description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-logo_filepath = 'logo_image.jpg'
-robot_filepath = 'robot_image.png'
+logo_filepath = 'aim23/Practice/images/logo_image.png'
+robot_filepath = 'aim23/Practice/images/robot_image.png'
 
 custom_css = """
 .column {

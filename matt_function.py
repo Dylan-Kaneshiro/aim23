@@ -1,4 +1,4 @@
-def create_agent(name, description, uploaded_file, agent):   
+def create_agent(pdf_paths, index):   #add vsi and filepaths
     from langchain.llms import OpenAI
     from langchain.document_loaders import PyPDFLoader
     from langchain.embeddings import OpenAIEmbeddings
@@ -6,21 +6,48 @@ def create_agent(name, description, uploaded_file, agent):
 
     from dotenv import load_dotenv
     load_dotenv()
-    import os
 
+
+
+    import os
+    os.environ['OPENAI_API_KEY'] = os.getenv('API_KEY')
+
+    # Import OpenAI as main LLM service
+    from langchain.llms import OpenAI
+    from langchain.embeddings import OpenAIEmbeddings
+
+    # Import PDF document loaders...there's other ones as well!
+    from langchain.document_loaders import PyPDFLoader
+    from langchain.indexes import VectorstoreIndexCreator
+
+    # pdf_paths = ['sample_financial_report.pdf', 'sample_financial_report_2.pdf']
+
+    loaders = []
+    for pdf in pdf_paths:
+        loader = PyPDFLoader(pdf)
+        loaders.append(loader)
+
+    index = VectorstoreIndexCreator().from_loaders(loaders)
+
+    question = "How does the revenue of Dylan Company compare to the revenue of Cheri Company?"
+
+    index.query(question)
+    return index
+
+    '''
     # Import vector store stuff
-    from langchain.agents.agent_toolkits import (
-        create_vectorstore_agent,
-        VectorStoreToolkit,
-        VectorStoreInfo
-    )
+    #from langchain.agents.agent_toolkits import (
+    #    create_vectorstore_agent,
+    #    VectorStoreToolkit,
+    #    VectorStoreInfo
+    #)
 
     #set APIKey for OpenAI service
-    os.environ['OPENAI_API_KEY'] = os.getenv("API_KEY")
+    #os.environ['OPENAI_API_KEY'] = os.getenv("API_KEY")
 
     # Create instance of OpenAI LLM
-    llm = OpenAI(temperature=0.1, verbose=True)
-    embeddings = OpenAIEmbeddings()
+    #llm = OpenAI(temperature=0.1, verbose=True)
+    #embeddings = OpenAIEmbeddings()
 
 
     #for file upload
@@ -50,4 +77,5 @@ def create_agent(name, description, uploaded_file, agent):
     )
 
     return agent_executor
+    '''
 

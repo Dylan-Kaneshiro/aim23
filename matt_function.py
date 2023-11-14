@@ -6,12 +6,7 @@ def create_VSI(pdf_paths, index):   #add vsi and filepaths
 
     from dotenv import load_dotenv
     load_dotenv()
-
-
-
-    import os
-    os.environ['OPENAI_API_KEY'] = os.getenv('API_KEY')
-
+    
     # Import OpenAI as main LLM service
     from langchain.llms import OpenAI
     from langchain.embeddings import OpenAIEmbeddings
@@ -19,6 +14,11 @@ def create_VSI(pdf_paths, index):   #add vsi and filepaths
     # Import PDF document loaders...there's other ones as well!
     from langchain.document_loaders import PyPDFLoader
     from langchain.indexes import VectorstoreIndexCreator
+    
+    import os
+    
+    llm = OpenAI(api_key=os.getenv("API_KEY"), temperature=0.1, verbose=True)
+    # os.environ['OPENAI_API_KEY'] = os.getenv('API_KEY')
 
     # pdf_paths = ['sample_financial_report.pdf', 'sample_financial_report_2.pdf']
 

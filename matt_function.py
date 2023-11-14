@@ -10,7 +10,7 @@ def create_VSI(pdf_paths, index):   #add vsi and filepaths
 
 
     import os
-    os.environ['OPENAI_API_KEY'] = os.getenv('API_KEY')
+    os.environ['OPENAI_API_KEY'] = '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'
 
     # Import OpenAI as main LLM service
     from langchain.llms import OpenAI
@@ -29,12 +29,11 @@ def create_VSI(pdf_paths, index):   #add vsi and filepaths
 
     index = VectorstoreIndexCreator().from_loaders(loaders)
 
-    question = "How does the revenue of Dylan Company compare to the revenue of Cheri Company?"
-
-    index.query(question)
+    llm = OpenAI(temperature=0.1, verbose=True)
+    embeddings = OpenAIEmbeddings()
     return index
 
-    '''
+    
     # Import vector store stuff
     #from langchain.agents.agent_toolkits import (
     #    create_vectorstore_agent,
@@ -42,13 +41,12 @@ def create_VSI(pdf_paths, index):   #add vsi and filepaths
     #    VectorStoreInfo
     #)
 
-    #set APIKey for OpenAI service
+    # set APIKey for OpenAI service
     #os.environ['OPENAI_API_KEY'] = os.getenv("API_KEY")
 
     # Create instance of OpenAI LLM
-    #llm = OpenAI(temperature=0.1, verbose=True)
-    #embeddings = OpenAIEmbeddings()
 
+    '''
 
     #for file upload
     file_path = uploaded_file.name

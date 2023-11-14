@@ -10,7 +10,7 @@ def create_VSI(pdf_paths, index):   #add vsi and filepaths
 
 
     import os
-    os.environ['OPENAI_API_KEY'] = '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'
+    os.environ['OPENAI_API_KEY'] = os.getenv('API_KEY')
 
     # Import OpenAI as main LLM service
     from langchain.llms import OpenAI

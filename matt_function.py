@@ -1,4 +1,4 @@
-def create_agent(pdf_paths, index):   #add vsi and filepaths
+def create_VSI(pdf_paths, index):   #add vsi and filepaths
     from langchain.llms import OpenAI
     from langchain.document_loaders import PyPDFLoader
     from langchain.embeddings import OpenAIEmbeddings

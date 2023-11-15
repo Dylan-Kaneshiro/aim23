@@ -17,8 +17,9 @@ def create_VSI(files, index):   #add vsi and filepaths
     
     import os
     
-    llm = OpenAI(api_key=os.getenv("API_KEY"), temperature=0.1, verbose=True)
-    # os.environ['OPENAI_API_KEY'] = os.getenv('API_KEY')
+    os.environ['OPENAI_API_KEY'] = os.getenv('API_KEY')
+    llm = OpenAI(temperature=0.1, verbose=True)
+    
 
     # pdf_paths = ['sample_financial_report.pdf', 'sample_financial_report_2.pdf']
     pathnames = [file.name for file in files]

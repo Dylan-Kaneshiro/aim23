@@ -1,4 +1,4 @@
-def create_VSI(pdf_paths, index):   #add vsi and filepaths
+def create_VSI(files, index):   #add vsi and filepaths
     from langchain.llms import OpenAI
     from langchain.document_loaders import PyPDFLoader
     from langchain.embeddings import OpenAIEmbeddings
@@ -21,9 +21,10 @@ def create_VSI(pdf_paths, index):   #add vsi and filepaths
     # os.environ['OPENAI_API_KEY'] = os.getenv('API_KEY')
 
     # pdf_paths = ['sample_financial_report.pdf', 'sample_financial_report_2.pdf']
+    pathnames = [file.name for file in files]
 
     loaders = []
-    for pdf in pdf_paths:
+    for pdf in pathnames:
         loader = PyPDFLoader(pdf)
         loaders.append(loader)
 

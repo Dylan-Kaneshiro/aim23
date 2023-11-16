@@ -1,7 +1,7 @@
 import random
 import time
 import gradio as gr
-from matt_function import *
+from matt_function import create_VSI
 
 
 logo_filepath = 'Practice/images/logo_image.png'

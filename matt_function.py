@@ -31,4 +31,4 @@ def create_VSI(files, index):   #add vsi and filepaths
 
     index = VectorstoreIndexCreator().from_loaders(loaders)
 
-    return index
+    return index, "Upload complete"

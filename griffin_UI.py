@@ -41,7 +41,10 @@ with gr.Blocks(css=custom_css) as demo:
         # name = gr.Textbox(label="Name", elem_classes='column_el')
         # description = gr.Textbox(label="Description", elem_classes='column_el')
         create_VSI_btn = gr.Button(value='Submit', elem_classes='column_el')
-        create_VSI_btn.click(fn=create_VSI, inputs = [files, VSidx], outputs = VSidx)
+        upload_status = gr.Textbox(label='Upload Status')
+        create_VSI_btn.click(fn=create_VSI, inputs = [files, VSidx], outputs = [VSidx, upload_status])
+        
+
         robot = gr.Image(value=robot_filepath, type='filepath', show_label=False, show_download_button=False, container=False, width=125, height=125, elem_classes='column_el')
       
       with gr.Column(scale=3, elem_classes='column'):

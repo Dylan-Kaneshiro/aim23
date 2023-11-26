@@ -4,8 +4,8 @@ import gradio as gr
 from matt_function import create_VSI
 
 
-logo_filepath = 'Practice/images/logo_image.png'
-robot_filepath = 'Practice/images/robot_image.png'
+logo_filepath = 'Readable.png'
+robot_filepath = 'Robot.png'
 
 custom_css = """
 .column {
@@ -33,7 +33,7 @@ with gr.Blocks(css=custom_css) as demo:
   with gr.Tab("Home"):
     with gr.Row(variant='compact'):
       with gr.Column(scale=1, elem_classes='column'):
-        logo = gr.Image(value=logo_filepath, type='filepath', show_label=False, show_download_button=False, container=False, width=75, height=175, elem_classes='column_el')
+        logo = gr.Image(value=logo_filepath, type='filepath', show_label=False, show_download_button=False, container=False, elem_classes='column_el')
         VSidx = gr.State()
         
         files = gr.File(file_count='multiple', show_label=False, elem_classes='column_el', height=75)
@@ -41,7 +41,7 @@ with gr.Blocks(css=custom_css) as demo:
         # name = gr.Textbox(label="Name", elem_classes='column_el')
         # description = gr.Textbox(label="Description", elem_classes='column_el')
         create_VSI_btn = gr.Button(value='Submit', elem_classes='column_el')
-        upload_status = gr.Textbox(label='Upload Status')
+        upload_status = gr.Textbox(label='Upload Status', value='No PDF uploaded')
         create_VSI_btn.click(fn=create_VSI, inputs = [files, VSidx], outputs = [VSidx, upload_status])
         
 

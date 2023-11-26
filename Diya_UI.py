@@ -3,8 +3,8 @@ import time
 import gradio as gr
 from create_query_engine import *
 
-logo_filepath = 'Practice/images/logo_image.png'
-robot_filepath = 'Practice/images/robot_image.png'
+logo_filepath = 'Readable.png'
+robot_filepath = 'Robot.png'
 
 custom_css = """
 .column {
@@ -35,7 +35,7 @@ with gr.Blocks(css=custom_css) as demo:
     with gr.Tab("Home"):  
             with gr.Row(variant='compact'):
                 with gr.Column(scale=1, elem_classes='column'):
-                    logo = gr.Image(value=logo_filepath, type='pil', show_label=False, show_download_button=False, container=False, width=75, height=175, elem_classes='column_el')
+                    logo = gr.Image(value=logo_filepath, type='pil', show_label=False, show_download_button=False, container=False, elem_classes='column_el')
                     agent = gr.State()
                     file = gr.File(file_types=['pdf'], file_count='single', show_label=False, elem_classes='column_el', height=75)
 

@@ -47,12 +47,12 @@ with gr.Blocks(css=custom_css) as demo:
                     with gr.Accordion("Command String Details"):
                         gr.Markdown("Enter command string details here")
                         with gr.Row():
-                            user = gr.Textbox(label="Username")
-                            password = gr.Textbox(label="Password")
+                            user = gr.Textbox(value='postgres', label="Username")
+                            password = gr.Textbox(value='aimfall23',label="Password")
                         with gr.Row():
-                            host = gr.Textbox(label="Host")
-                            port = gr.Textbox(label="Port")
-                            myDB = gr.Textbox(label="mydatabase")
+                            host = gr.Textbox(value='aim-23-text-to-sql.cv6cnzb0rcuo.us-east-1.rds.amazonaws.com',label="Host")
+                            port = gr.Textbox(value='5432', label="Port")
+                            myDB = gr.Textbox(value='sample_db', label="mydatabase")
                             upload_status = gr.Textbox(value="Database not connected yet", label="Connect Status")
                         submit_SQL_btn = gr.Button("Submit postgre details")
                     submit_SQL_btn.click(fn=create_query_engine, inputs = [file, user, password, host, port, myDB], outputs=[SQLidx, sql_engine, upload_status])

@@ -19,7 +19,7 @@ custom_css = """
 
 def respond(message, chat_history, index):
   bot_message = index.query(message)
-  chat_history.append((message, bot_message))
+  chat_history.append((message, bot_message.response))
   time.sleep(2)
   return "", chat_history, display_question_and_answer(chat_history)
 
